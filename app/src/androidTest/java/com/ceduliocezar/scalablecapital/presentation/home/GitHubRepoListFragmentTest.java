@@ -7,7 +7,10 @@ import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.ceduliocezar.scalablecapital.R;
+import com.microsoft.appcenter.espresso.Factory;
+import com.microsoft.appcenter.espresso.ReportHelper;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,6 +30,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 public class GitHubRepoListFragmentTest {
 
     @Rule
+    public ReportHelper reportHelper = Factory.getReportHelper();
+
+    @Rule
     public IntentsTestRule<HomeActivity> activityRule = new IntentsTestRule<>(
             HomeActivity.class,
             true,
@@ -38,11 +44,19 @@ public class GitHubRepoListFragmentTest {
         IdlingRegistry.getInstance().register(idlingResource);
     }
 
+    @After
+    public void tearDown() throws Exception {
+        reportHelper.label("stoppingApp");
+    }
+
     @Test
     public void test_showList() {
+        reportHelper.label("beginMainScreen");
         onView(withId(R.id.list)).check(matches(isDisplayed()));
+        reportHelper.label("mainScreenBeforeScroll");
         onView(withId(R.id.list)).perform(RecyclerViewActions.scrollToPosition(15));
-
+        reportHelper.label("mainScreenAfterScroll");
         onView(withText("37430328")).check(matches(isDisplayed()));
+        reportHelper.label("endMainScreen");
     }
 }
