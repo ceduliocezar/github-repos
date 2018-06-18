@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.ceduliocezar.scalablecapital"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    // Testing dependencies
+    testImplementation 'junit:junit:4.12'
+    // enables android json on unit testing, same as default available on android framework
+    testImplementation 'org.json:json:20180130'
+    // having incompatibility problems with newest testing libs
+    //noinspection GradleDependency
+    testImplementation 'org.mockito:mockito-core:2.8.0'
+    testImplementation 'org.powermock:powermock-api-mockito2:1.7.0RC2'
+    // having incompatibility problems with newest testing libs
+    //noinspection GradleDependency
+    testImplementation 'org.powermock:powermock-module-junit4:1.7.0'
+    // having incompatibility problems with newest testing libs
+    //noinspection GradleDependency
+    testImplementation 'org.powermock:powermock-core:1.7.0'
+    // having incompatibility problems with newest testing libs
+    //noinspection GradleDependency
+    testImplementation 'org.powermock:powermock-module-junit4-rule:1.7.0'
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+}
