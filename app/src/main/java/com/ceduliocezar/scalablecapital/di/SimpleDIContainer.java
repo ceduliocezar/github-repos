@@ -9,11 +9,13 @@ import com.ceduliocezar.scalablecapital.model.datasource.JsonReader;
 import com.ceduliocezar.scalablecapital.model.interactor.GetGitHubRepoList;
 import com.ceduliocezar.scalablecapital.model.repository.GitHubRepoRepository;
 import com.ceduliocezar.scalablecapital.model.repository.GitHubRepoRepositoryImpl;
+import com.ceduliocezar.scalablecapital.presentation.home.GitHubRepoListContract;
 import com.ceduliocezar.scalablecapital.presentation.home.GitHubRepoListFragment;
 import com.ceduliocezar.scalablecapital.presentation.home.GitHubRepoListPresenter;
-import com.ceduliocezar.scalablecapital.presentation.home.GitHubRepoListContract;
+import com.ceduliocezar.scalablecapital.presentation.home.HomeActivity;
 import com.ceduliocezar.scalablecapital.threading.MainPostExecutionThread;
 import com.ceduliocezar.scalablecapital.threading.PostExecutionThread;
+import com.ceduliocezar.scalablecapital.threading.SimpleIdlingResource;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -25,6 +27,7 @@ public class SimpleDIContainer {
     private static SimpleDIContainer INSTANCE = null;
 
     private ThreadPoolExecutor executor = null;
+    private SimpleIdlingResource simpleIdlingResource = null;
 
     private SimpleDIContainer() {
         // access by static method
@@ -40,6 +43,14 @@ public class SimpleDIContainer {
 
     public void inject(GitHubRepoListFragment gitHubRepoListFragment) {
         gitHubRepoListFragment.presenter = providesHomePresenter();
+        gitHubRepoListFragment.idlingResource = providesIdlingResource();
+    }
+
+    private SimpleIdlingResource providesIdlingResource() {
+        if (simpleIdlingResource == null) {
+            simpleIdlingResource = new SimpleIdlingResource();
+        }
+        return simpleIdlingResource;
     }
 
     private GitHubRepoListContract.Presenter providesHomePresenter() {
@@ -92,4 +103,7 @@ public class SimpleDIContainer {
     }
 
 
+    public void inject(HomeActivity homeActivity) {
+        homeActivity.idlingResource = providesIdlingResource();
+    }
 }

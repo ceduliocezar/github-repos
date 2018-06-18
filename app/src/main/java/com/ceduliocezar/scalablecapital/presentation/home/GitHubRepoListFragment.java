@@ -12,6 +12,7 @@ import com.ceduliocezar.scalablecapital.R;
 import com.ceduliocezar.scalablecapital.di.SimpleDIContainer;
 import com.ceduliocezar.scalablecapital.logging.AppLog;
 import com.ceduliocezar.scalablecapital.model.entities.GitHubRepo;
+import com.ceduliocezar.scalablecapital.threading.SimpleIdlingResource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,10 @@ public class GitHubRepoListFragment extends Fragment implements GitHubRepoListCo
     private static final String TAG = "GitHubRepoListFragment";
     public GitHubRepoListContract.Presenter presenter;
     public GitHubRepoRecyclerViewAdapter adapter;
-
+    public SimpleIdlingResource idlingResource;
 
     private View loadingContainer;
+
 
     public GitHubRepoListFragment() {
         // mandatory
@@ -72,12 +74,14 @@ public class GitHubRepoListFragment extends Fragment implements GitHubRepoListCo
     public void showLoading() {
         AppLog.d(TAG, "showLoading: ");
         loadingContainer.setVisibility(View.VISIBLE);
+        idlingResource.setIdleState(false);
     }
 
     @Override
     public void hideLoading() {
         AppLog.d(TAG, "hideLoading: ");
         loadingContainer.setVisibility(View.GONE);
+        idlingResource.setIdleState(true);
 
     }
 
@@ -91,6 +95,4 @@ public class GitHubRepoListFragment extends Fragment implements GitHubRepoListCo
     public String getUserName() {
         return "mralexgray";// static by now
     }
-
-
 }
