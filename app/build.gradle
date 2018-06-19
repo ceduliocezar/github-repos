@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.ceduliocezar.scalablecapital"
+        applicationId "com.ceduliocezar.repos"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
