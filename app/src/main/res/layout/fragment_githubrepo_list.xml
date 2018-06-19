@@ -8,7 +8,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
-        android:name="com.ceduliocezar.scalablecapital.presentation.home.GitHubRepoFragment"
+        android:name="com.ceduliocezar.repos.presentation.home.GitHubRepoListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"

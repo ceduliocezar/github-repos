@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_repo_list"
-        android:name="com.ceduliocezar.scalablecapital.presentation.home.GitHubRepoListFragment"
+        android:name="com.ceduliocezar.repos.presentation.home.GitHubRepoListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"

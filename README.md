@@ -1,7 +1,5 @@
 # github-repos
 
-Scalable Capital Android Developer Test Assignment
-
 ## Motivation
 1. Create an Android Client for GitHub API without using 3rd party libs.
 2. Create a fully tested Android application using best practices as:
